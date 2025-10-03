@@ -1,0 +1,252 @@
+
+
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+
+<meta charset="utf-8">
+<meta name="description" content="functions 3_2">
+
+<title>Exercise 3_2: functions</title>
+
+<script>
+// because I am using input type="number" in the form, I will not need to use the if (isNaN(n1)...) that I used in another exercise becasue the input type="number" will not allow users to enter letters
+
+function process()
+
+  {	
+
+         //declare variables
+
+         var n1,n2,n3,n4,tn1,tn2,tn3,tn4,total,nPr,pr,np,tc;
+                np=250;
+         //input 3 integers from form text boxes using getElementById 
+
+    n1 = document.getElementById("num1").value;
+     
+    n2= document.getElementById("num2").value;
+      
+    n3 = document.getElementById("num3").value;
+
+    n4 = document.getElementById("num4").value;
+
+         //convert numbers from strings to integers
+
+        n1I = parseInt(n1);
+         n2I = parseInt(n2);
+         n3I = parseInt(n3);
+        n4I = parseInt(n4);
+        
+         //validate
+         if( (Number.isInteger(n1I) && n1I >= 0 )&&(Number.isInteger(n2I) && n2I >= 0 )
+         &&(Number.isInteger(n3I) && n3I >= 0 )&&(Number.isInteger(n4I) && n4I >= 0 )){
+                   
+                 tn1=Math.round(2099*n1I)/100;
+                  tn2=Math.round(1275*n2I)/100;
+                   tn3=Math.round(995*n3I)/100;
+                    tn4=Math.round(3589*n4I)/100;
+
+                     document.getElementById("q1").value =n1I;
+                     document.getElementById("q2").value =n2I;
+                     document.getElementById("q3").value =n3I;
+                     document.getElementById("q4").value =n4I;
+
+                     document.getElementById("t1").value =tn1;
+                     document.getElementById("t2").value =tn2;
+                     document.getElementById("t3").value =tn3;
+                     document.getElementById("t4").value =tn4;
+
+                     total=Math.round(100*(tn1+tn2+tn3+tn4))/100;
+                     pr=(total/100)*9;
+
+                    nPr=Math.round(pr*100)/100;
+                    tc=nPr+np;
+                     document.getElementById("tas").value =total;
+                      document.getElementById("twe").value =tc;
+
+  
+            document.getElementById("result").value = ("Seller's Total Sold and Earnings");  
+            
+} else {
+  document.getElementById("result").value = ("Please enter valid number quantity sold")
+}
+
+   
+         //Display the entered numbers, and other results
+/**
+document.getElementById("result").value = ("The inputted numbers were " + n1 + ", " + n2 + ", " +  n3 + 
+"\nThe smallest number is " +  min + 
+"\nThe largest number is " + max + 
+"\nThe sum of the numbers " + sum + 
+"\nThe average of the numbers is " + avr + 
+"\nThe product of the integers was " + product)
+
+(Number.isInteger(hwI) && hwI >= 0 && hwI <= 100) &&  (Number.isInteger(mtI) && mtI >= 0 && mtI <= 100)
+         &&(Number.isInteger(fnI) && fnI >= 0 && fnI <= 100) &&  (Number.isInteger(prtI) && prtI >= 0 && prtI <= 100)
+**/
+  }
+
+</script>
+
+<style>
+
+    body {
+      font-family: Arial, sans-serif;
+      margin: 40px;
+      background-color: #f9f9f9;
+      color: #333;
+    }
+    header {
+      text-align: center;
+      padding: 20px;
+      background-color: #4CAF50;
+      color: white;
+      border-radius: 8px;
+    }
+    
+    .main {	width:500px;
+	margin:0px auto; /* Right and left margin widths set to "auto" */
+	text-align:left; /* Counteract to IE/Win Hack */ }
+    footer {
+      text-align: center;
+      margin-top: 40px;
+      font-size: 0.9em;
+      color: #666;
+    }
+
+</style>
+
+</head>
+
+<body>
+  <header>
+    <h1>Welcome to My JS class</h1>
+    <p>Homework 3 - Functions - Part 2</p>
+  </header>
+<section class="main">
+
+ <h2> WEEKLY EARNINGS</h2>
+
+<p style="font: bold 14px 'comic sans ms'; text-align: justify;  width: 500px;">
+Create a webpage that contains a script that uses form of 4 text boxes to input items sold and uses a form textarea to display 
+Quantaty Sold with Total for that Item. Total Amount Sold and Total Weekly Earnings in separete fields.</p>
+
+<br>
+
+
+<form id="myform" name="myform">
+
+<table>
+<tr>
+
+<td>Item 1:</td> 
+<td><input type="number" id="num1" min="0" autofocus></td>
+
+</tr>
+<tr>
+
+<td>Item 2:</td>  
+<td><input type="number" id="num2" min="0"></td>
+
+</tr>
+
+<tr>
+
+<td>Item 3:</td>  
+<td><input type="number" id="num3" min="0"></td>
+
+</tr>
+<td>Item 4:</td>  
+<td><input type="number" id="num4" min="0"></td>
+
+</tr>
+</table>
+
+<br>
+
+Results: <textarea rows="2" cols="40" id="result" readonly></textarea><br><br>
+
+<input type="button" onclick="process()" value="SUBMIT">
+
+
+
+<input type="reset" value="RESET"><br><br>
+
+
+<table>
+    <tr>
+        <td colspan="4" id"output></td>
+    </tr>
+
+    <tr>
+        <th>Item#</th>
+         <th>Priced</th>
+          <th>Qty Sold</th>
+           <th>Total $</th>
+        </tr>
+        <tr>
+            <td>1</td>
+            <td>$20.99</td>
+            <td><input type="number" name="qs1" id="q1" readonly></td>
+            <td><input type="number" name="ts1" id="t1" readonly></td>
+        </tr>
+
+        <tr>
+            <td>2</td>
+            <td>$12.75</td>
+            <td><input type="number" name="qs2" id="q2" readonly></td>
+            <td><input type="number" name="ts2" id="t2" readonly></td>
+        </tr>
+
+        <tr>
+            <td>3</td>
+            <td>$9.95</td>
+            <td><input type="number" name="qs3" id="q3" readonly></td>
+            <td><input type="number" name="ts3" id="t3" readonly></td>
+        </tr>
+
+        <tr>
+            <td>4</td>
+            <td>$35.89</td>
+            <td><input type="number" name="qs4" id="q4" readonly></td>
+            <td><input type="number" name="ts4" id="t4" readonly></td>
+        </tr>
+
+        <tr>
+            <td colspan="3">Total Ammount Sold</td>
+              
+           
+            <td><input type="number" name="ta" id="tas" readonly></td>
+        </tr>
+
+        <tr>
+            <td colspan="3">Total Weekly Earnings</td>
+          
+            <td><input type="number" name="tw" id="twe" readonly></td>
+        </tr>
+        </table>
+</form>
+
+<br>
+
+ <ul>
+        <li><a href="hw3.html"> Go back to Homework 3 </a></li>
+     <!-- <li>Main content section</li>
+      <li>Footer with copyright</li>. ---> 
+    </ul>
+   
+    <ul>
+        <li><a href="index.html"> Go back to the list with homework </a></li>
+     <!-- <li>Main content section</li>
+      <li>Footer with copyright</li>. ---> 
+    </ul>
+
+</section>
+ <footer>
+    <p>&copy; 2025 My JS Webpage</p>
+  </footer>
+</body>
+</html>
+
+

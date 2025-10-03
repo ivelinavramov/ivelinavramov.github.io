@@ -1,0 +1,150 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<title>My First Webpage</title>
+<style>
+body {
+    font-family: Arial, sans-serif;
+    margin: 40px;
+    background-color: #f9f9f9;
+    color: #333;
+}
+header {
+    text-align: center;
+    padding: 20px;
+    background-color: #4CAF50;
+    color: white;
+    border-radius: 8px;
+}
+main {
+    margin-top: 20px;
+}
+footer {
+    text-align: center;
+    margin-top: 40px;
+    font-size: 0.9em;
+    color: #666;
+}
+.correct {
+    color: green;
+    font-size: 18px;
+    font-weight: bold;
+}
+.incorrect {
+    color: red;
+    font-size: 18px;
+}
+</style>
+</head>
+<body>
+<header>
+    <h1>Welcome to My JS class</h1>
+    <p>Homework 3 - Functions - Extra Credit</p>
+</header>
+<main>
+    <h2>Learning to Multiply</h2>
+    <section class="body">
+        <h3></h3>
+       
+        <form name="numberG">
+            <b>Multiply number </b>
+            <input type="text" name="rn1" id="r1" size="3" readonly>
+            <b> by </b>
+            <input type="text" name="rn2" id="r2" size="3" readonly>
+            <b> is equal to </b>
+            <input name="number" type="text" id="ans" size="3">
+            <input type="button" value="check your answer" onclick="guess();">
+            <br><br>
+            <input type="button" value="YES, New Problem" onclick="newProblem();">
+            <input type="reset" value="NO, Stop Practice" onclick="clearResult();">
+            <br><br>
+        </form>
+        <div id="result"></div>
+    
+        <br>
+        <br>
+    </section>
+    <ul>
+        <li><a href="hw3.html">Go back to Homework 3</a></li>
+    </ul>
+    <ul>
+        <li><a href="index.html">Go back to the list with homework</a></li>
+    </ul>
+</main>
+<footer>
+    <p>&copy; 2025 My JS Webpage</p>
+</footer>
+
+<script>
+var fN, sN;
+
+// Initialize the game when page loads
+function initGame() {
+    fN = Math.floor(1 + Math.random() * 9);
+    sN = Math.floor(1 + Math.random() * 9);
+    document.getElementById("r1").value = fN;
+    document.getElementById("r2").value = sN;
+}
+
+// Generate new problem
+function newProblem() {
+    fN = Math.floor(1 + Math.random() * 9);
+    sN = Math.floor(1 + Math.random() * 9);
+    document.getElementById("r1").value = fN;
+    document.getElementById("r2").value = sN;
+    document.getElementById("ans").value = "";
+    document.getElementById("result").innerHTML = "";
+}
+
+// Check the answer
+function guess() {
+    var rightAns = fN * sN;
+    var userAnswer = document.getElementById("ans").value;
+    var num = parseInt(userAnswer);
+    
+    // Validate input
+    if (! Number.isInteger(num)) {
+       document.getElementById("result").innerHTML = "Please enter a valid number!";     
+    }
+    
+   else if (num < 0 || num > 81) {
+        document.getElementById("result").innerHTML =" Answer must be between 0 and 81!";
+    }
+    
+    // Check if answer is correct
+    else if (rightAns == num) {
+        document.getElementById("result").innerHTML = "Very good! " + num + " is correct!";
+                 
+    setTimeout(() => {
+         newProblem();
+        }, 4000);
+            
+    } else {
+        document.getElementById("result").innerHTML = +num+ " is incorrect!<br>" +
+            "Please try again!";
+            
+    }
+}
+
+// Clear result message
+function clearResult() {
+    document.getElementById("result").innerHTML = "";
+    document.getElementById("ans").value = "";
+    res();
+}
+
+// Goodbye message
+function res() {
+    document.getElementById("result").innerHTML = 
+        "Thanks for playing, see you next time ";
+}
+
+// Initialize when page loads
+initGame();
+</script>
+</body>
+</html>
+
+
