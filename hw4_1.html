@@ -1,0 +1,133 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<title>My First Webpage</title>
+<style>
+body {
+    font-family: Arial, sans-serif;
+    margin: 40px;
+    background-color: #f9f9f9;
+    color: #333;
+}
+header {
+    text-align: center;
+    padding: 20px;
+    background-color: #4CAF50;
+    color: white;
+    border-radius: 8px;
+}
+main {
+    margin-top: 20px;
+}
+footer {
+    text-align: center;
+    margin-top: 40px;
+    font-size: 0.9em;
+    color: #666;
+}
+.correct {
+    color: green;
+    font-size: 18px;
+    font-weight: bold;
+}
+.incorrect {
+    color: red;
+    font-size: 18px;
+}
+</style>
+</head>
+<body>
+<header>
+    <h1>Welcome to My JS class</h1>
+    <p>Homework 4.1 - Looping Statements </p>
+</header>
+<main>
+    <h2>Learning to Add and Multiply</h2>
+    
+      <p>Using FOR loop to find out the product and sum </p>
+      <p>of every fourt integer between 5 and 25 inclusive</p>
+    <section class="body">
+        <h3></h3>
+       
+        <form name="numberG">
+            <b>The result of 5*9*13*17*21*25 is  </b>
+            <input type="text" name="fl1" id="l1" size="8" readonly>
+            <br><br>
+             <b>The result of 5+9+13+17+21+25 is  </b>
+            <input type="text" name="fl2" id="l2" size="6" readonly>
+             <br><br>
+        </form>
+      
+    </section>
+
+    <p>Using WHILE loop to find out the product and sum </p>
+      <p>of every third integer between 3 and 18 inclusive</p>
+    <section class="body">
+        <h3></h3>
+       
+        <form name="numberG">
+            <b>The result of 3*6*9*12*15*18 is  </b>
+            <input type="text" name="wl1" id="l3" size="8" readonly>
+            <br><br>
+             <b>The result of 3+6+9+12+15+18 is  </b>
+            <input type="text" name="wl2" id="l4" size="6" readonly>
+             <br><br>
+        </form>
+    <ul>
+        <li><a href="hw4.html">Go back to Homework 4</a></li>
+    </ul>
+    <ul>
+        <li><a href="index.html">Go back to the list with homework</a></li>
+    </ul>
+</main>
+<footer>
+    <p>&copy; 2025 My JS Webpage</p>
+</footer>
+
+<script>
+var f1=1, f2=0, w1=3, w2=3 ;
+
+// Run the function
+function initAM() {
+    forLoop();
+    whileLoop();
+    document.getElementById("l1").value = f1.toLocaleString();
+    document.getElementById("l2").value = f2.toLocaleString();
+    document.getElementById("l3").value = w1.toLocaleString();
+    document.getElementById("l4").value = w2.toLocaleString();
+}
+
+// Run for loop
+function forLoop() {
+     for (var x = 5; x <= 25; x=x+4) {
+            
+         f1=f1*x;
+        f2=f2+x;
+     }
+}
+
+// Run whole loop
+function whileLoop() {
+    var count=3;
+    var check3=3+count;
+    while (count<=18){
+            if(check3==count){
+                 w1=w1*count;
+                 w2=w2+count;
+                 check3=count+3;
+            }
+            count++;
+    }
+  
+    
+}
+
+// Initialize
+initAM();
+</script>
+</body>
+</html>
+
+
