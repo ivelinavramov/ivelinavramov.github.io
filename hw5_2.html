@@ -1,0 +1,167 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <title>My First Webpage</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 40px;
+            background-color: #f9f9f9;
+            color: #333;
+        }
+
+        header {
+            text-align: center;
+            padding: 20px;
+            background-color: #4CAF50;
+            color: white;
+            border-radius: 8px;
+        }
+
+        main {
+            margin-top: 20px;
+        }
+
+        footer {
+            text-align: center;
+            margin-top: 40px;
+            font-size: 0.9em;
+            color: #666;
+        }
+    </style>
+</head>
+
+<body>
+    <header>
+        <h1>Welcome to My JS class</h1>
+        <p>Homework 5.2 - Arrays </p>
+    </header>
+
+    <main>
+
+        <h2> Homework 5.2 - Arrays </h2>
+            <br>
+            <br>
+          <form id="stateForm">
+        <div class="form-group">
+            <label for="stateInput">Enter State Name or Abbreviation:</label>
+            <input type="text" 
+                   id="stateInput" 
+                   name="stateInput" 
+                   placeholder="e.g., California or CA"
+                   autocomplete="off">
+        </div>
+        <br>
+        <div class="button-group">
+            <button type="submit">Get State Info</button>
+            <button type="button" id="clearButton">Clear Form</button>
+        </div>
+    </form>
+    
+    <div id="output" class="hidden"></div>
+
+        <br>
+        <br>
+        <br>
+        <ul>
+            <li><a href="hw5.html"> Go to Homework 5 </a></li>
+         
+        </ul>
+        
+        <ul>
+            <li><a href="index.html"> Go back to the list with homework </a></li>
+        
+        </ul>
+    </main>
+
+    <footer>
+        <p>&copy; 2025 My JS Webpage</p>
+    </footer>
+     
+    <script>
+        // Two-dimensional array
+        const stateData = [
+            ['AL', 'Alabama', 'Montgomery', '5,157,699'],
+            ['AK', 'Alaska', 'Juneau', '740,133'],
+            ['AZ', 'Arizona', 'Phoenix', '7,582,384'],
+            ['AR', 'Arkansas', 'Little Rock', '3,088,354'],
+            ['CA', 'California', 'Sacramento', '39,431,263'],
+            ['CO', 'Colorado', 'Denver', '5,957,493']
+        ];
+        
+        const form = document.getElementById('stateForm');
+        const stateInput = document.getElementById('stateInput');
+        const output = document.getElementById('output');
+        const clearBtn = document.getElementById('clearButton');
+        
+       
+        function findState(searchTerm) {
+            const search = searchTerm.trim().toLowerCase();
+            
+            if (search === '') {
+                return null;
+            }
+            
+            for (let i = 0; i < stateData.length; i++) {
+                const abbr = stateData[i][0].toLowerCase();
+                const name = stateData[i][1].toLowerCase();
+                
+                if (search === abbr || search === name) {
+                    return stateData[i];
+                }
+            }
+            
+            return null;
+        }
+        
+        
+        function getStateList() {
+            let list = [];
+            for (let i = 0; i < stateData.length; i++) {
+                list.push(stateData[i][1] + ' (' + stateData[i][0] + ')');
+            }
+            return list.join(', ');
+        }
+        
+        
+        form.addEventListener('submit', function(e) {
+            e.preventDefault();
+            
+            const userInput = stateInput.value;
+            const state = findState(userInput);
+            
+            output.classList.remove('hidden', 'error', 'success');
+            
+            if (state === null) {
+                if (userInput.trim() === '') {
+                    output.className = 'error';
+                    output.innerHTML = '<strong>Error:</strong> Please enter a state name or abbreviation.';
+                } else {
+                    output.className = 'error';
+                    output.innerHTML = '<strong>Sorry, we do not have information about this state!</strong><br><br>' +
+                        'We only have information about the following states:<br>' +
+                        getStateList();
+                }
+            } else {
+                output.className = 'success state-info';
+                output.innerHTML = '<strong>Thanks for your inquiry, here is the information you requested:</strong><br><br>' +
+                    '<strong>State Abbr:</strong> ' + state[0] + '<br>' +
+                    '<strong>State Name:</strong> ' + state[1] + '<br>' +
+                    '<strong>Capital:</strong> ' + state[2] + '<br>' +
+                    '<strong>Population:</strong> ' + state[3];
+            }
+        });
+        
+        // Clear form handler
+        clearBtn.addEventListener('click', function() {
+            form.reset();
+            output.classList.add('hidden');
+            output.className = '';
+            output.innerHTML = '';
+        });
+    </script>
+</body>
+
+</html>

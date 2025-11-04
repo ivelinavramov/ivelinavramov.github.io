@@ -1,0 +1,197 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <title>My First Webpage</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 40px;
+            background-color: #f9f9f9;
+            color: #333;
+        }
+
+        header {
+            text-align: center;
+            padding: 20px;
+            background-color: #4CAF50;
+            color: white;
+            border-radius: 8px;
+        }
+
+        main {
+            margin-top: 20px;
+        }
+
+        footer {
+            text-align: center;
+            margin-top: 40px;
+            font-size: 0.9em;
+            color: #666;
+        }
+    </style>
+</head>
+
+<body>
+    <header>
+        <h1>Welcome to My JS class</h1>
+        <p>Homework 5.1 - Arrays </p>
+    </header>
+
+    <main>
+
+        <h2> Homework 5.1 - Arrays </h2>
+       
+ 
+    <form id="userForm">
+       
+        <div class="form-group">
+            <label for="fullName">Full Name:</label>
+            <input type="text" id="fullName" name="fullName" placeholder="Enter your full name">
+        </div>
+        <br>
+       
+        <div class="form-group">
+            <label>Age Group:</label>
+            <div class="radio-group">
+                <label>
+                    <input type="radio" id="age1" name="ageGroup" value="less than 21">
+                    Less than 21
+                </label>
+                <label>
+                    <input type="radio" id="age2" name="ageGroup" value="between 21 and 50">
+                    Between 21 and 50
+                </label>
+                <label>
+                    <input type="radio" id="age3" name="ageGroup" value="older than 50">
+                    Older than 50
+                </label>
+            </div>
+        </div>
+        <br>
+       
+        <div class="form-group">
+            <label>Browsers You Have Used:</label>
+            <div class="checkbox-group">
+                <label>
+                    <input type="checkbox" id="firefox" name="browsers" value="Firefox">
+                    Firefox
+                </label>
+                <label>
+                    <input type="checkbox" id="edge" name="browsers" value="Edge">
+                    Edge
+                </label>
+                <label>
+                    <input type="checkbox" id="chrome" name="browsers" value="Chrome">
+                    Chrome
+                </label>
+                <label>
+                    <input type="checkbox" id="safari" name="browsers" value="Safari">
+                    Safari
+                </label>
+            </div>
+        </div>
+        <br>
+       
+        <div class="form-group">
+            <label for="movieType">Preferred Movie Type:</label>
+            <select id="movieType" name="movieType">
+                <option value="">-- Select a movie type --</option>
+                <option value="Action">Action</option>
+                <option value="Comedy">Comedy</option>
+                <option value="Drama">Drama</option>
+                <option value="Documentary">Documentary</option>
+                <option value="Science Fiction">Science Fiction</option>
+            </select>
+        </div>
+        <br>
+       
+        <div class="button-group">
+            <button type="submit">Submit</button>
+            <button type="button" id="clearBtn">Clear Form</button>
+        </div>
+    </form>
+    <br>
+    
+    <div id="output" class="hidden"></div>
+    <br>
+
+     <ul>
+            <li><a href="hw5.html"> Go to Homework 5 </a></li>
+        
+        </ul>
+        
+        <ul>
+            <li><a href="index.html"> Go back to the list with homework </a></li>
+     
+        </ul>
+    </main>
+
+   
+
+    <footer>
+        <p>&copy; 2025 My JS Webpage</p>
+    </footer>
+
+ 
+    <script>
+        const form = document.getElementById('userForm');
+        const output = document.getElementById('output');
+        const clearBtn = document.getElementById('clearBtn');
+        
+        
+        form.addEventListener('submit', function(e) {
+            e.preventDefault(); 
+            
+            const fullName = document.getElementById('fullName').value.trim();
+            const ageGroup = document.querySelector('input[name="ageGroup"]:checked');
+            const browsers = document.querySelectorAll('input[name="browsers"]:checked');
+            const movieType = document.getElementById('movieType').value;
+            
+           
+            let errors = [];
+            
+            if (fullName === '') {
+                errors.push('Please enter your full name.');
+            }
+            
+            if (!ageGroup) {
+                errors.push('Please select an age group.');
+            }
+            
+            if (browsers.length === 0) {
+                errors.push('Please select at least one browser.');
+            }
+            
+            if (movieType === '') {
+                errors.push('Please select a preferred movie type.');
+            }
+            
+            
+            output.classList.remove('hidden', 'error', 'success');
+            
+            if (errors.length > 0) {
+                
+                output.className = 'error';
+                output.innerHTML = '<strong>Error:</strong><br>' + errors.join('<br>');
+            } else {
+               
+                output.className = 'success';
+                output.innerHTML = '<strong>Thanks, your data was submitted!</strong>';
+            }
+        });
+        
+        
+        clearBtn.addEventListener('click', function() {
+            form.reset();
+            output.classList.add('hidden');
+            output.className = '';
+            output.innerHTML = '';
+        });
+    </script>
+
+
+</body>
+
+</html>
