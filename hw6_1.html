@@ -1,0 +1,136 @@
+
+
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <title>My First Webpage</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 40px;
+            background-color: #f9f9f9;
+            color: #333;
+        }
+
+        header {
+            text-align: center;
+            padding: 20px;
+            background-color: #4CAF50;
+            color: white;
+            border-radius: 8px;
+        }
+
+        main {
+            margin-top: 20px;
+        }
+
+        footer {
+            text-align: center;
+            margin-top: 40px;
+            font-size: 0.9em;
+            color: #666;
+        }
+    </style>
+</head>
+
+<body>
+    <header>
+        <h1>Welcome to My JS class</h1>
+        <p>Homework 6.1 - Objects </p>
+    </header>
+
+    <main>
+
+        
+            <h2> Decimal Number Calculator </h2>
+    
+    <form id="numberForm">
+        <label for="numberInput">Enter a number with at least 4 decimal places:</label>
+        <input type="text" id="numberInput" placeholder="e.g., 4.3264" required>
+        <br>
+        <br>
+        <button type="button" id="submitBtn" onclick="calculateResults()">Submit</button>
+        <button type="button" id="clearBtn" onclick="clearForm()">Clear</button>
+    </form>
+    
+    <div id="output"></div>
+ 
+
+         <ul>
+            <li><a href="hw6.html"> Go to Homework 6 </a></li>
+        
+        </ul>
+       
+        <ul>
+            <li><a href="index.html"> Go back to the list with homework </a></li>
+       
+        </ul>
+    </main>
+
+    <footer>
+        <p>&copy; 2025 My JS Webpage</p>
+    </footer>
+
+     <script>
+        function calculateResults() {
+            const input = document.getElementById('numberInput').value;
+            const output = document.getElementById('output');
+            
+            
+            output.innerHTML = '';
+            
+         
+            if (input.trim() === '') {
+                output.innerHTML = '<p>Please enter a number.</p>';
+                return;
+            }
+            
+         
+            if (isNaN(input)) {
+                output.innerHTML = '<p>Invalid input. Please enter a valid number.</p>';
+                return;
+            }
+            
+            
+            const decimalPart = input.split('.')[1];
+            if (!decimalPart || decimalPart.length < 4) {
+                output.innerHTML = '<p>You need to type a number with at least 4 decimals, please try again.</p>';
+                return;
+            }
+            
+           
+            const num = parseFloat(input);
+          
+            const roundedInteger = Math.round(num);
+            const sqrtRounded = Math.round(Math.sqrt(num));
+            const roundedTenths = num.toFixed(1);
+            const roundedHundredths = num.toFixed(2);
+            const roundedThousandths = num.toFixed(3);
+            
+            
+            output.innerHTML = `
+                <div>
+                    <p><strong>You typed number ${num}</strong></p>
+                    <p>Rounded to the nearest integer = ${roundedInteger}</p>
+                    <p>Square root rounded to integer = ${sqrtRounded}</p>
+                    <p>Rounded to the nearest 10th position = ${roundedTenths}</p>
+                    <p>Rounded to the nearest 100th position = ${roundedHundredths}</p>
+                    <p>Rounded to the nearest 1000th position = ${roundedThousandths}</p>
+                </div>
+            `;
+        }
+        
+        function clearForm() {
+            document.getElementById('numberInput').value = '';
+            document.getElementById('output').innerHTML = '';
+        }
+        
+    </script>
+
+
+</body>
+
+</html>
+

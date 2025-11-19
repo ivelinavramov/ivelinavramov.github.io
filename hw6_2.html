@@ -1,0 +1,156 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <title>My First Webpage</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 40px;
+            background-color: #f9f9f9;
+            color: #333;
+        }
+
+        header {
+            text-align: center;
+            padding: 20px;
+            background-color: #4CAF50;
+            color: white;
+            border-radius: 8px;
+        }
+
+        main {
+            margin-top: 20px;
+        }
+
+        footer {
+            text-align: center;
+            margin-top: 40px;
+            font-size: 0.9em;
+            color: #666;
+        }
+    </style>
+</head>
+
+<body>
+    <header>
+        <h1>Welcome to My JS class</h1>
+        <p>Homework 6.2 - Objects </p>
+    </header>
+
+    <main>
+
+        <h2> Character Search Page </h2>
+    
+    <form id="searchForm">
+        <label for="contentArea">Enter your text content:</label>
+        <textarea id="contentArea" rows="8" placeholder="Type or paste your text here..." required></textarea>
+        
+        <label for="searchChar">Enter a single character to search for:</label>
+        <input type="text" id="searchChar" maxlength="1" placeholder="e.g., a" required>
+        <p class="note">Note: Search is case-insensitive (e.g., 'a' will match both 'a' and 'A')</p>
+        
+        <button type="button" id="submitBtn" onclick="searchCharacter()">Search</button>
+        <button type="button" id="clearBtn" onclick="clearForm()">Clear</button>
+    </form>
+    
+    <div id="output"></div>
+
+    
+       
+        <ul>
+            <li><a href="hw6.html"> Go to Homework 6 </a></li>
+        
+        </ul>
+       
+        <ul>
+            <li><a href="index.html"> Go back to the list with homework </a></li>
+       
+        </ul>
+    </main>
+
+    <footer>
+        <p>&copy; 2025 My JS Webpage</p>
+    </footer>
+
+    <script>
+        function searchCharacter() {
+            const content = document.getElementById('contentArea').value;
+            const searchChar = document.getElementById('searchChar').value;
+            const output = document.getElementById('output');
+            
+           
+            output.innerHTML = '';
+            
+            
+            if (content.trim() === '') {
+                output.innerHTML = '<p>Please enter some text content to search.</p>';
+                return;
+            }
+            
+            if (searchChar === '') {
+                output.innerHTML = '<p>Please enter a character to search for.</p>';
+                return;
+            }
+            
+            
+            let count = 0;
+            const lowerContent = content.toLowerCase();
+            const lowerSearchChar = searchChar.toLowerCase();
+            
+            for (let i = 0; i < lowerContent.length; i++) {
+                if (lowerContent.charAt(i) === lowerSearchChar) {
+                    count++;
+                }
+            }
+            
+            
+            if (count > 0) {
+                output.innerHTML = `<p>The character "${searchChar}" appears ${count} time${count !== 1 ? 's' : ''} in the content.</p>`;
+            } else {
+                
+                output.innerHTML = '';
+                
+                
+                const newWindow = window.open('SearchResult', 'SearchResult', 'width=300,height=200,left=100,top=100');
+                
+                if (newWindow) {
+                    newWindow.document.open();
+                    newWindow.document.write(`
+                        <!DOCTYPE html>
+                        <html>
+                        <head>
+                            <title>Search Result</title>
+                            <style>
+                              body {
+                                font-family: Arial, sans-serif;
+                                margin: 40px;
+                                background-color: #f9f9f9;
+                                color: #333;
+                            }
+                            </style>
+                        </head>
+                        <body>
+                            <p>Search character "${searchChar}" not found in the content you typed</p>
+                            <button onclick="window.close()">Close</button>
+                        </body>
+                        </html>
+                    `);
+                    newWindow.document.close();
+                }
+            }
+        }
+        
+        function clearForm() {
+            document.getElementById('contentArea').value = '';
+            document.getElementById('searchChar').value = '';
+            document.getElementById('output').innerHTML = '';
+        }
+        
+    </script>
+
+
+</body>
+
+</html>
