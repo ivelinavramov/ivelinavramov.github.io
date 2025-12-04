@@ -1,0 +1,178 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <title>My First Webpage</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 40px;
+            background-color: #f9f9f9;
+            color: #333;
+        }
+
+        header {
+            text-align: center;
+            padding: 20px;
+            background-color: #4CAF50;
+            color: white;
+            border-radius: 8px;
+        }
+
+        main {
+            margin-top: 20px;
+        }
+
+        footer {
+            text-align: center;
+            margin-top: 40px;
+            font-size: 0.9em;
+            color: #666;
+        }
+    </style>
+</head>
+
+<body>
+    <header>
+        <h1>Welcome to My JS class</h1>
+        <p>Homework 7.1 - DOM, Cookies</p>
+    </header>
+
+
+
+    <h2> Homework 7.1 - Styles Tester</h2>
+    <br>
+
+    <div>
+        <main id="contentArea">
+            <p>The American Orchid Society (AOS) is a horticultural society for education, conservation, and research of
+                orchids.</p>
+
+            <p>It was founded in 1921, and has an international membership.</p>
+
+            <p>As of 2001 it was the largest special interest horticultural organization in the world.</p>
+        </main>
+    </div>
+
+    <div>
+
+        <h3>Background Color</h3>
+        <div>
+            <label>
+                <input type="radio" name="bgrColor" value="#ffffff" checked onchange="applyStyles()">
+                White White
+            </label>
+        </div>
+        <div>
+            <label>
+                <input type="radio" name="bgrColor" value="#ffe0e0" onchange="applyStyles()">
+                Light Pink
+            </label>
+        </div>
+        <div>
+            <label>
+                <input type="radio" name="bgrColor" value="#b9d9ff" onchange="applyStyles()">
+                Light Blue
+            </label>
+        </div>
+        <d>
+            <label>
+                <input type="radio" name="bgrColor" value="#fff0bf" onchange="applyStyles()">
+                Light Yellow
+            </label>
+    </div>
+
+
+
+    <h3>Text Styles</h3>
+    <div>
+        <label>
+            <input type="checkbox" id="boldCheck" onchange="applyStyles()">
+            Bold
+        </label>
+    </div>
+    <div>
+        <label>
+            <input type="checkbox" id="italicCheck" onchange="applyStyles()">
+            Italic
+        </label>
+    </div>
+    <div>
+        <label>
+            <input type="checkbox" id="underlineCheck" onchange="applyStyles()">
+            Underline
+        </label>
+    </div>
+
+
+
+    <h3>Font Size</h3>
+    <select id="fontSize" onchange="applyStyles()">
+        <option value="1rem" selected>Normal (1 relative unit)</option>
+        <option value="1.4rem">Large (1.4relative units)</option>
+        <option value="1.9rem">Extra Large (1.9 relative units)</option>
+        <option value="0.7rem">Small (0.7 relative units)</option>
+    </select>
+
+
+    </div>
+
+
+    <br>
+    <br>
+    <ul>
+        <li><a href="hw7.html"> Go to Homework 7 </a></li>
+
+    </ul>
+
+    <ul>
+        <li><a href="index.html"> Go back to the list with homework </a></li>
+
+    </ul>
+
+
+    <footer>
+        <p>&copy; 2025 My JS Webpage</p>
+    </footer>
+
+    <script>
+        function applyStyles() {
+            const contentArea = document.getElementById('contentArea');
+
+            const selectedColor = document.querySelector('input[name="bgrColor"]:checked').value;
+            contentArea.style.backgroundColor = selectedColor;
+
+
+            const isBold = document.getElementById('boldCheck').checked;
+            const isItalic = document.getElementById('italicCheck').checked;
+            const isUnderline = document.getElementById('underlineCheck').checked;
+
+            if (isBold) {
+                contentArea.style.fontWeight = 'bold';
+            } else {
+                contentArea.style.fontWeight = 'normal';
+            }
+
+            if (isItalic) {
+                contentArea.style.fontStyle = 'italic';
+            } else {
+                contentArea.style.fontStyle = 'normal';
+            }
+
+            if (isUnderline) {
+                contentArea.style.textDecoration = 'underline';
+            } else {
+                contentArea.style.textDecoration = 'none';
+            }
+
+
+            const selectedFontSize = document.getElementById('fontSize').value;
+            contentArea.style.fontSize = selectedFontSize;
+        }
+    </script>
+
+
+</body>
+
+</html>
