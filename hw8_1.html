@@ -1,0 +1,183 @@
+
+
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <title>My First Webpage</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 40px;
+            background-color: #f9f9f9;
+            color: #333;
+        }
+
+        header {
+            text-align: center;
+            padding: 20px;
+            background-color: #4CAF50;
+            color: white;
+            border-radius: 8px;
+        }
+
+        main {
+            margin-top: 20px;
+        }
+
+        footer {
+            text-align: center;
+            margin-top: 40px;
+            font-size: 0.9em;
+            color: #666;
+        }
+    </style>
+</head>
+
+<body>
+    <header>
+        <h1>Welcome to My JS class</h1>
+        <p>Homework 8.1 - AJAX Applications</p>
+    </header>
+
+    <main>
+
+          <h2> Homework 8.1 - AJAX Applications</h2>
+
+          <button type="button" onclick="loadDoc()">Get CD collection</button>
+            <br><br>
+            <table id="demo"></table>
+            <br>
+              <h2>Explanation of AJAX</h2>
+    <div>
+        <p>
+            This page demonstrates the use of AJAX (Asynchronous JavaScript and XML) to load data 
+            from an external file without refreshing the entire page. After clicking the "Load Data" 
+            button, the loadData() function is triggered, which initiates an AJAX request. First
+            , an XMLHttpRequest object is created, which is the core technology behind AJAX and allows
+             JavaScript to communicate with the server asynchronously. The xhr.open() method 
+             configures the request by specifying the HTTP method (GET), the URL of the file to retrieve (data.xml),
+              and sets the third parameter to true to make the request asynchronous, the 
+              browser doesn't freeze while waiting for the response.
+        </p>
+        
+        <p>
+            The onreadystatechange event handler monitors the progress of the request.
+             The readyState === 4 means the request is 
+             complete, and status === 200 means the server successfully found and returned the 
+             requested file. Then the response is parsed from XML format using 
+             xhr.responseXML, and the data is extracted and displayed in the content div. Finally, 
+             xhr.send() actually sends the request to the server. The beauty of AJAX is that all of
+              this happens in the background without requiring a page reload, creating an asychronius, dynamic user
+               experience.
+        </p>
+    </div>
+            <br>
+
+    <h2>REST API</h2>
+    <div>
+        <h3>SoundCloud API: Recommendation Report for AudioStream Radio co. </h3>
+        
+        <p></p>
+            Recommendation: The SoundCloud API represents an exceptional opportunity for 
+            AudioStream Radio co. to differentiate ourselves in the competitive music discovery market. The JSON-based responses 
+            integrate seamlessly with our technology stack, the OAuth 2.0 authentication is both secure and familiar to our 
+            team, and most importantly, the completely free pricing model eliminates a major operational expense while providing 
+            access to an unparalleled catalog of independent music and podcasts. This free pricing model represents a significant
+             cost advantage compared to 
+            competitors like Spotify API or Apple Music API, both of which have strict commercial restrictions 
+            or require revenue-sharing agreements. The comprehensive documentation and active developer 
+            community will accelerate our development timeline. SoundCloud hosts over 300 
+            million tracks from millions of creators worldwide, making it the largest open audio platform available.
+             This integration will allow our users to discover emerging artists, stream podcasts, and create custom 
+             playlists—all within our platform's interface, significantly enhancing our value proposition to content 
+             creators and listeners alike.
+    
+        </p>
+        
+        <p>
+            Technical Integration: The SoundCloud API returns data exclusively in JSON format, 
+            which perfectly aligns with our modern JavaScript and React-based frontend architecture. JSON's 
+            lightweight, human-readable structure enables rapid parsing and seamless integration with our existing 
+            codebase. API responses include comprehensive metadata such as track titles, artist information, artwork
+             URLs, waveform data, playback counts, and user engagement metrics. The API provides RESTful endpoints for
+              searching tracks, retrieving user profiles, accessing playlists, and streaming audio content. 
+             
+        </p>
+        
+        <p>
+           Authentication and Security: Accessing the SoundCloud API requires authentication 
+            through OAuth 2.0, which provides a secure and industry-standard method for user authorization. Developers
+             must first register their application on the SoundCloud Developer Portal to receive a Client ID and 
+             Client Secret. For public data access (such as searching tracks or retrieving public playlists), only 
+             the Client ID is required in API requests. However, for accessing private user data or performing actions 
+             on behalf of users (like creating playlists or uploading tracks), full OAuth 2.0 authentication flow is
+              necessary.
+        </p>
+        
+        <p>
+            Developer Resources: SoundCloud provides comprehensive documentation to
+             support developers throughout the integration process. The official
+              <a href="https://developers.soundcloud.com/docs/api/guide" target="_blank" rel="noopener noreferrer">
+                SoundCloud API Guide</a> offers detailed information about available endpoints, request parameters, 
+                and response formats. Additionally, the 
+                <a href="https://developers.soundcloud.com/docs/api/reference" target="_blank" rel="noopener noreferrer">
+                    API Reference documentation</a> provides complete technical specifications for every endpoint, including
+                     example requests and responses. For developers new to the platform, SoundCloud offers a helpful 
+                     <a href="https://developers.soundcloud.com/docs/api/authentication" target="_blank" rel="noopener noreferrer">
+                        authentication tutorial</a> that walks through the OAuth 2.0 implementation step-by-step. The developer 
+                        community is active, with numerous code examples, SDKs for multiple languages (JavaScript, Python, Ruby, PHP),
+                         and community-contributed libraries available on GitHub.
+        </p>
+        
+    
+       
+    </div>
+        <br>
+         <ul>
+            <li><a href="hw8.html"> Go to Homework 8 </a></li>
+        
+        </ul>
+       
+        <ul>
+            <li><a href="index.html"> Go back to the list with homework </a></li>
+       
+        </ul>
+    </main>
+
+    <footer>
+        <p>&copy; 2025 My JS Webpage</p>
+    </footer>
+
+   <script>
+function loadDoc() {
+  const xhttp = new XMLHttpRequest();
+  xhttp.onload = function() {
+    myFunction(this);
+  }
+  xhttp.open("GET", "cd_catalog.xml");
+  xhttp.send();
+}
+function myFunction(xml) {
+  const xmlDoc = xml.responseXML;
+  const x = xmlDoc.getElementsByTagName("CD");
+  let table="<tr><th>Artist</th><th>Title</th></tr>";
+  for (let i = 0; i <x.length; i++) { 
+    table += "<tr><td>" +
+    x[i].getElementsByTagName("ARTIST")[0].childNodes[0].nodeValue +
+    "</td><td>" +
+    x[i].getElementsByTagName("TITLE")[0].childNodes[0].nodeValue +
+    "</td></tr>";
+  }
+  document.getElementById("demo").innerHTML = table;
+}
+</script>
+
+</body>
+
+</html>
+
+
+
+
